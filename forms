@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+
+	<form name="main" class="main-form" action="#">		
+		<label class="main-form__label">Поле ввода</label>
+			<input type="text" name="nameInput" class="main-form__input" placeholder="Введите что-то...">
+		<label class="main-form__label">Текстовое поле ввода</label>
+			<textarea type="text" name="nameTextarea" class="main-form__textarea" placeholder="Введите что-то..." ></textarea>
+						
+		<label class="main-form__label" >Радиокнопки</label>
+			<input  type="radio" name='nameRadio'class="main-form__radio" >
+		<label class="main-form__inline-label" >Кнопка №1</label>
+			<input type="radio" class="main-form__radio" name="nameRadio">
+		<label class="main-form__inline-label">Кнопка №2</label>
+		<label class="main-form__inline-label">Чекбокс</label>
+			<input type="checkbox" class="main-form__radio" name="nameCheck">
+		<label class="main-form__label">Прикрепить файл</label>
+			<input type="file" name="nameFile">		
+		<label class="main-form__label">Список</label>
+			<select class="main-form__select" name="nameSelect">
+				<option value="1" selected>20</option>
+				<option value="2">30</option>
+				<option value="3">50</option>
+			</select>
+		<button type="submit" class="main-form__button">Кнопка отправки формы</button>
+		
+	</form>
+
+	<script type="text/javascript">
+		console.log(document.forms);//HTMLCollection { 0: form.main-form, length: 1, … }
+		const mainForm = document.forms[0];
+		console.log(mainForm);//<form class="main-form" name="main" action="#">
+		const nameForm = document.forms.main;
+		console.log(nameForm);//<form class="main-form" name="main" action="#">
+		console.log(document.querySelectorAll('form'));// NodeList [ form.main-form ]
+		document.body.insertAdjacentHTML(
+	"beforeend",
+	`<form name="some" class="some-form" action="#"></form>`);
+
+		const elementsForm = document.forms.main;
+		console.log(elementsForm.elements);
+
+		const mainFormInput = mainForm.elements.nameInput;
+		console.log(mainFormInput);
+
+
+		console.log(mainFormInput.form);
+		
+		const mainoneFormInput = mainForm.nameInput;
+		console.log(mainoneFormInput.value);
+		
+		const maintwoFormTextarea = mainForm.nameTextarea;
+		console.log(maintwoFormTextarea.value);
+
+		mainoneFormInput.value = "Пока";
+		maintwoFormTextarea.value = "До встречи!";
+
+
+		// работа в чекбоксом и радио в статье не рассматривается
+		//const mainFormRadioButtons = mainForm.nameRadio;
+		//console.log(mainFormRadioButtons);
+		//const mainFormCheckBox = mainForm.nameCheck;
+		//console.log(mainFormCheckBox);
+		//const mainFormFile = mainForm.nameFile;
+		//console.log(mainFormFile);
+
+		// Работа с select и option
+		const selectmainForm = document.forms.main;
+		const mainFormSelect = selectmainForm.nameSelect;
+
+		// Получить все options
+		console.log(mainFormSelect.options);
+
+		// Получить индекс выбранного option
+const mainFormSelectIndex = mainFormSelect.selectedIndex;
+console.log(mainFormSelectIndex);
+
+
+// Получить значение выбранного option
+const mainFormSelectValue = mainFormSelect.value;
+console.log(mainFormSelectValue);
+// Получить текст выбранного option
+const mainFormSelectText = mainFormSelect.options[mainFormSelectIndex].text;
+console.log(mainFormSelectText);
+
+//Выбрать некий option
+mainFormSelect.options[1].selected = true;
+mainFormSelect.selectedIndex = 1;
+mainFormSelect.value = 2;
+
+//Добавление нового option
+
+let newOption = new Option("1000", "4", true, true);
+mainFormSelect.append(newOption);
+
+	</script>
+
+</body>
+</html>
